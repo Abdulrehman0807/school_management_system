@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:school_management_system/view/student/splach.dart';
+import 'package:school_management_system/view/student/splachscreen/splach.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             )),
-        home: SplachScreen());
+        home: SplashScreen());
   }
 }
 

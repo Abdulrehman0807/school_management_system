@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyCustomPainter extends CustomPainter {
@@ -11,13 +10,13 @@ class MyCustomPainter extends CustomPainter {
     var paint1 = Paint()..color = Colors.blue;
     Path path = Path();
     path.moveTo(0, 0);
-    path.quadraticBezierTo(width * 0.5, height * 0.3, width, 0);
+    path.quadraticBezierTo(width * 0.5, height * 0.25, width, 0);
     path.close();
 
     Path path1 = Path();
 
     path1.moveTo(0, height);
-    path1.quadraticBezierTo(width * 0.5, height * 0.83, width, height);
+    path1.quadraticBezierTo(width * 0.5, height * 0.8, width, height);
 
     canvas.drawPath(path1, paint1);
 
