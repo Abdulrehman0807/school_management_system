@@ -8,7 +8,33 @@ class Resultscreen extends StatefulWidget {
   State<Resultscreen> createState() => _ResultscreenState();
 }
 
-class _ResultscreenState extends State<Resultscreen> {
+class _ResultscreenState extends State<Resultscreen>
+    with TickerProviderStateMixin {
+  late AnimationController _controller;
+
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize AnimationController for multiple animations
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -26,12 +52,15 @@ class _ResultscreenState extends State<Resultscreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      height: height * 0.15,
-                      width: width * 0.7,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("images/logo1.png")),
+                    FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Container(
+                        height: height * 0.15,
+                        width: width * 0.7,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("images/logo1.png")),
+                        ),
                       ),
                     ),
                   ],
@@ -53,32 +82,35 @@ class _ResultscreenState extends State<Resultscreen> {
                           SizedBox(
                             height: height * 0.06,
                           ),
-                          Container(
-                            height: height * 0.3,
-                            width: width * 0.9,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                    color: Colors.black12, width: 1)),
-                            child: new CircularPercentIndicator(
-                              radius: 70.0,
-                              lineWidth: 13.0,
-                              animation: true,
-                              percent: 0.7,
-                              center: new Text(
-                                "70.0%",
-                                style: new TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.0),
+                          FadeTransition(
+                            opacity: _fadeAnimation,
+                            child: Container(
+                              height: height * 0.3,
+                              width: width * 0.9,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                      color: Colors.black12, width: 1)),
+                              child: new CircularPercentIndicator(
+                                radius: 70.0,
+                                lineWidth: 13.0,
+                                animation: true,
+                                percent: 0.7,
+                                center: new Text(
+                                  "70.0%",
+                                  style: new TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.0),
+                                ),
+                                footer: new Text(
+                                  "This Month Result",
+                                  style: new TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17.0),
+                                ),
+                                circularStrokeCap: CircularStrokeCap.round,
+                                progressColor: Colors.purple,
                               ),
-                              footer: new Text(
-                                "This Month Result",
-                                style: new TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17.0),
-                              ),
-                              circularStrokeCap: CircularStrokeCap.round,
-                              progressColor: Colors.purple,
                             ),
                           ),
                           SizedBox(

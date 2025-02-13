@@ -224,7 +224,7 @@ class _AttendanceState extends State<Attendance> {
                                       eventLoader: (day) {
                                         // Return attendance status for the day
                                         return _attendance.containsKey(day)
-                                            ? [_attendance[day]!]
+                                            ? [_attendance[day] ?? '']
                                             : [];
                                       },
                                       calendarBuilders: CalendarBuilders(

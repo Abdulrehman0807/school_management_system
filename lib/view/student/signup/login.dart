@@ -209,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       .textTheme
                                       .headline1!
                                       .copyWith(
-                                          fontStyle: FontStyle.normal,
+                                          fontStyle: FontStyle.italic,
                                           fontSize: width * 0.06,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w600),

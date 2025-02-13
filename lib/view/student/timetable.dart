@@ -7,7 +7,32 @@ class Timetable extends StatefulWidget {
   State<Timetable> createState() => _TimetableState();
 }
 
-class _TimetableState extends State<Timetable> {
+class _TimetableState extends State<Timetable> with TickerProviderStateMixin {
+  late AnimationController _controller;
+
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize AnimationController for multiple animations
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -26,12 +51,15 @@ class _TimetableState extends State<Timetable> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  height: height * 0.15,
-                  width: width * 0.7,
-                  decoration: BoxDecoration(
-                    image:
-                        DecorationImage(image: AssetImage("images/logo1.png")),
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: Container(
+                    height: height * 0.15,
+                    width: width * 0.7,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("images/logo1.png")),
+                    ),
                   ),
                 ),
               ],
@@ -57,10 +85,188 @@ class _TimetableState extends State<Timetable> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Card(
-                            elevation: 2,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
+                          FadeTransition(
+                            opacity: _fadeAnimation,
+                            child: Card(
+                              elevation: 2,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Container(
+                                height: height * 0.48,
+                                width: width * 0.9,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.black12,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Column(
+                                  children: [
+                                    ListTile(
+                                      leading: Text("Timetable ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                fontSize: width * 0.05,
+                                              )),
+                                      trailing: Icon(Icons.arrow_forward),
+                                    ),
+                                    Divider(
+                                      thickness: 1,
+                                    ),
+                                    ListTile(
+                                      leading: Text("Monday ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                fontSize: width * 0.04,
+                                              )),
+                                      trailing: Text("Feb 1, 2024",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                fontSize: width * 0.04,
+                                              )),
+                                    ),
+                                    Divider(
+                                      thickness: 1,
+                                    ),
+                                    ListTile(
+                                      leading: Text("English ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                  fontSize: width * 0.037,
+                                                  fontWeight: FontWeight.w500)),
+                                      trailing: Container(
+                                        height: height * 0.03,
+                                        width: width * 0.22,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black12),
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Center(
+                                          child: Text(" 12:00-12:40",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                      fontSize: width * 0.03,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
+                                        ),
+                                      ),
+                                    ),
+                                    ListTile(
+                                      leading: Text("Physic ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                  fontSize: width * 0.037,
+                                                  fontWeight: FontWeight.w500)),
+                                      trailing: Container(
+                                        height: height * 0.03,
+                                        width: width * 0.22,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black12),
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Center(
+                                          child: Text(" 12:40-1:20",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                      fontSize: width * 0.03,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
+                                        ),
+                                      ),
+                                    ),
+                                    ListTile(
+                                      leading: Text("Chemistry ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                  fontSize: width * 0.037,
+                                                  fontWeight: FontWeight.w500)),
+                                      trailing: Container(
+                                        height: height * 0.03,
+                                        width: width * 0.22,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black12),
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Center(
+                                          child: Text(" 1:20-2:00",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                      fontSize: width * 0.03,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
+                                        ),
+                                      ),
+                                    ),
+                                    ListTile(
+                                      leading: Text("Biology ",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                  fontSize: width * 0.037,
+                                                  fontWeight: FontWeight.w500)),
+                                      trailing: Container(
+                                        height: height * 0.03,
+                                        width: width * 0.22,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black12),
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Center(
+                                          child: Text(" 2:00-2:40",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                      fontSize: width * 0.03,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Container(
+                          height: height * 0.48,
+                          width: width * 0.88,
+                          child: Center(
                             child: Container(
                               height: height * 0.48,
                               width: width * 0.9,
@@ -85,14 +291,14 @@ class _TimetableState extends State<Timetable> {
                                     thickness: 1,
                                   ),
                                   ListTile(
-                                    leading: Text("Monday ",
+                                    leading: Text("Tuesday ",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline1!
                                             .copyWith(
                                               fontSize: width * 0.04,
                                             )),
-                                    trailing: Text("Feb 1, 2024",
+                                    trailing: Text("Feb 8, 2024",
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline1!
@@ -223,844 +429,704 @@ class _TimetableState extends State<Timetable> {
                               ),
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                    Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Container(
-                        height: height * 0.48,
-                        width: width * 0.88,
-                        child: Center(
-                          child: Container(
-                            height: height * 0.48,
-                            width: width * 0.9,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black12,
-                                ),
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  leading: Text("Timetable ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.05,
-                                          )),
-                                  trailing: Icon(Icons.arrow_forward),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("Tuesday ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                  trailing: Text("Feb 8, 2024",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("English ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:00-12:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                    FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Container(
+                          height: height * 0.48,
+                          width: width * 0.88,
+                          child: Center(
+                            child: Container(
+                              height: height * 0.48,
+                              width: width * 0.9,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.black12,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    leading: Text("Timetable ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.05,
+                                            )),
+                                    trailing: Icon(Icons.arrow_forward),
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  ListTile(
+                                    leading: Text("Wednesday ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.04,
+                                            )),
+                                    trailing: Text("Feb 16, 2024",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.04,
+                                            )),
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  ListTile(
+                                    leading: Text("English ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 12:00-12:40",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Physic ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:40-1:20",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Physic ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 12:40-1:20",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Chemistry ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 1:20-2:00",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Chemistry ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 1:20-2:00",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Biology ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 2:00-2:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Biology ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 2:00-2:40",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Container(
-                        height: height * 0.48,
-                        width: width * 0.88,
-                        child: Center(
-                          child: Container(
-                            height: height * 0.48,
-                            width: width * 0.9,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black12,
-                                ),
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  leading: Text("Timetable ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.05,
-                                          )),
-                                  trailing: Icon(Icons.arrow_forward),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("Wednesday ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                  trailing: Text("Feb 16, 2024",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("English ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:00-12:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                    FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Container(
+                          height: height * 0.48,
+                          width: width * 0.88,
+                          child: Center(
+                            child: Container(
+                              height: height * 0.48,
+                              width: width * 0.9,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.black12,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    leading: Text("Timetable ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.05,
+                                            )),
+                                    trailing: Icon(Icons.arrow_forward),
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  ListTile(
+                                    leading: Text("Thursday ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.04,
+                                            )),
+                                    trailing: Text("Feb 23, 2024",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.04,
+                                            )),
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  ListTile(
+                                    leading: Text("English ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 12:00-12:40",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Physic ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:40-1:20",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Physic ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 12:40-1:20",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Chemistry ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 1:20-2:00",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Chemistry ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 1:20-2:00",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Biology ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 2:00-2:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Biology ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 2:00-2:40",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Container(
-                        height: height * 0.48,
-                        width: width * 0.88,
-                        child: Center(
-                          child: Container(
-                            height: height * 0.48,
-                            width: width * 0.9,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black12,
-                                ),
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  leading: Text("Timetable ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.05,
-                                          )),
-                                  trailing: Icon(Icons.arrow_forward),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("Thursday ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                  trailing: Text("Feb 23, 2024",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("English ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:00-12:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                    FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Container(
+                          height: height * 0.48,
+                          width: width * 0.88,
+                          child: Center(
+                            child: Container(
+                              height: height * 0.48,
+                              width: width * 0.9,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.black12,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    leading: Text("Timetable ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.05,
+                                            )),
+                                    trailing: Icon(Icons.arrow_forward),
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  ListTile(
+                                    leading: Text("Friday ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.04,
+                                            )),
+                                    trailing: Text("Feb 23, 2024",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.04,
+                                            )),
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  ListTile(
+                                    leading: Text("English ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 12:00-12:40",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Physic ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:40-1:20",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Physic ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 12:40-1:20",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Chemistry ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 1:20-2:00",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Chemistry ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 1:20-2:00",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Biology ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 2:00-2:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Biology ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 2:00-2:40",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Container(
-                        height: height * 0.48,
-                        width: width * 0.88,
-                        child: Center(
-                          child: Container(
-                            height: height * 0.48,
-                            width: width * 0.9,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black12,
-                                ),
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  leading: Text("Timetable ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.05,
-                                          )),
-                                  trailing: Icon(Icons.arrow_forward),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("Friday ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                  trailing: Text("Feb 23, 2024",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("English ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:00-12:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                    FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Card(
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Container(
+                          height: height * 0.48,
+                          width: width * 0.88,
+                          child: Center(
+                            child: Container(
+                              height: height * 0.48,
+                              width: width * 0.9,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.black12,
+                                  ),
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    leading: Text("Timetable ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.05,
+                                            )),
+                                    trailing: Icon(Icons.arrow_forward),
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  ListTile(
+                                    leading: Text("Saturday ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.04,
+                                            )),
+                                    trailing: Text("Feb 28, 2024",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: width * 0.04,
+                                            )),
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  ListTile(
+                                    leading: Text("English ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 12:00-12:40",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Physic ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:40-1:20",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Physic ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 12:40-1:20",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Chemistry ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 1:20-2:00",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Chemistry ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 1:20-2:00",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ListTile(
-                                  leading: Text("Biology ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 2:00-2:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
+                                  ListTile(
+                                    leading: Text("Biology ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                                fontSize: width * 0.037,
+                                                fontWeight: FontWeight.w500)),
+                                    trailing: Container(
+                                      height: height * 0.03,
+                                      width: width * 0.22,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black12),
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(" 2:00-2:40",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                    fontSize: width * 0.03,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Container(
-                        height: height * 0.48,
-                        width: width * 0.88,
-                        child: Center(
-                          child: Container(
-                            height: height * 0.48,
-                            width: width * 0.9,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black12,
-                                ),
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  leading: Text("Timetable ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.05,
-                                          )),
-                                  trailing: Icon(Icons.arrow_forward),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("Saturday ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                  trailing: Text("Feb 28, 2024",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                            fontSize: width * 0.04,
-                                          )),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                ),
-                                ListTile(
-                                  leading: Text("English ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:00-12:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
-                                    ),
-                                  ),
-                                ),
-                                ListTile(
-                                  leading: Text("Physic ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 12:40-1:20",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
-                                    ),
-                                  ),
-                                ),
-                                ListTile(
-                                  leading: Text("Chemistry ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 1:20-2:00",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
-                                    ),
-                                  ),
-                                ),
-                                ListTile(
-                                  leading: Text("Biology ",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline1!
-                                          .copyWith(
-                                              fontSize: width * 0.037,
-                                              fontWeight: FontWeight.w500)),
-                                  trailing: Container(
-                                    height: height * 0.03,
-                                    width: width * 0.22,
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black12),
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(" 2:00-2:40",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                  fontSize: width * 0.03,
-                                                  fontWeight: FontWeight.w500)),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),

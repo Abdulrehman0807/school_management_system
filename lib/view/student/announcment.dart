@@ -7,7 +7,33 @@ class Announcments extends StatefulWidget {
   State<Announcments> createState() => _AnnouncmentsState();
 }
 
-class _AnnouncmentsState extends State<Announcments> {
+class _AnnouncmentsState extends State<Announcments>
+    with TickerProviderStateMixin {
+  late AnimationController _controller;
+
+  late Animation<double> _fadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize AnimationController for multiple animations
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -24,12 +50,15 @@ class _AnnouncmentsState extends State<Announcments> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      height: height * 0.15,
-                      width: width * 0.7,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("images/logo1.png")),
+                    FadeTransition(
+                      opacity: _fadeAnimation,
+                      child: Container(
+                        height: height * 0.15,
+                        width: width * 0.7,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("images/logo1.png")),
+                        ),
                       ),
                     ),
                   ],
@@ -52,125 +81,137 @@ class _AnnouncmentsState extends State<Announcments> {
                           SizedBox(
                             height: height * 0.06,
                           ),
-                          Container(
-                            height: height * 0.55,
-                            width: width * 0.85,
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.black12, width: 1),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  height: height * 0.046,
-                                  width: width * 0.85,
-                                  color: Colors.yellow,
-                                  child: Center(
-                                    child: Text("Event Holiday  23 Mar 2024",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1!
-                                            .copyWith(
-                                                fontSize: width * 0.05,
-                                                fontWeight: FontWeight.w500)),
+                          FadeTransition(
+                            opacity: _fadeAnimation,
+                            child: Container(
+                              height: height * 0.55,
+                              width: width * 0.85,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black12, width: 1),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    height: height * 0.046,
+                                    width: width * 0.85,
+                                    color: Colors.yellow,
+                                    child: Center(
+                                      child: Text("Event Holiday  23 Mar 2024",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                  fontSize: width * 0.05,
+                                                  fontWeight: FontWeight.w500)),
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  height: height * 0.5,
-                                  width: width * 0.85,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black12),
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                            "images/announcment.jpg")),
+                                  Container(
+                                    height: height * 0.5,
+                                    width: width * 0.85,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.black12),
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                              "images/announcment.jpg")),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Container(
-                            height: height * 0.55,
-                            width: width * 0.85,
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.black12, width: 1),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  height: height * 0.046,
-                                  width: width * 0.85,
-                                  color: Colors.yellow,
-                                  child: Center(
-                                    child: Text("Event Holiday  23 Mar 2024",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1!
-                                            .copyWith(
-                                                fontSize: width * 0.05,
-                                                fontWeight: FontWeight.w500)),
+                          FadeTransition(
+                            opacity: _fadeAnimation,
+                            child: Container(
+                              height: height * 0.55,
+                              width: width * 0.85,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black12, width: 1),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    height: height * 0.046,
+                                    width: width * 0.85,
+                                    color: Colors.yellow,
+                                    child: Center(
+                                      child: Text("Event Holiday  23 Mar 2024",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                  fontSize: width * 0.05,
+                                                  fontWeight: FontWeight.w500)),
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  height: height * 0.5,
-                                  width: width * 0.85,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black12),
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                            "images/announcment.jpg")),
+                                  Container(
+                                    height: height * 0.5,
+                                    width: width * 0.85,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.black12),
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                              "images/announcment.jpg")),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Container(
-                            height: height * 0.55,
-                            width: width * 0.85,
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.black12, width: 1),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  height: height * 0.046,
-                                  width: width * 0.85,
-                                  color: Colors.yellow,
-                                  child: Center(
-                                    child: Text("Event Holiday  23 Mar 2024",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1!
-                                            .copyWith(
-                                                fontSize: width * 0.05,
-                                                fontWeight: FontWeight.w500)),
+                          FadeTransition(
+                            opacity: _fadeAnimation,
+                            child: Container(
+                              height: height * 0.55,
+                              width: width * 0.85,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black12, width: 1),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    height: height * 0.046,
+                                    width: width * 0.85,
+                                    color: Colors.yellow,
+                                    child: Center(
+                                      child: Text("Event Holiday  23 Mar 2024",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                  fontSize: width * 0.05,
+                                                  fontWeight: FontWeight.w500)),
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  height: height * 0.5,
-                                  width: width * 0.85,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.black12, width: 1),
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                            "images/announcment.jpg")),
+                                  Container(
+                                    height: height * 0.5,
+                                    width: width * 0.85,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black12, width: 1),
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                              "images/announcment.jpg")),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
