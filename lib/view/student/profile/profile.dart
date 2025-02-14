@@ -77,116 +77,126 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
             ),
           ),
           Positioned(
-            bottom: height * 0.61,
-            left: width * 0.1,
-            right: width * 0.1,
-            child: Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              child: Container(
-                height: height * 0.09,
-                width: width * 0.8,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black12),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: height * 0.09,
-                      width: width * 0.25,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("DOB",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline1!
-                                  .copyWith(
-                                    fontSize: width * 0.05,
-                                  )),
-                          SizedBox(
-                            height: height * 0.01,
+              bottom: height * 0.61,
+              left: width * 0.1,
+              right: width * 0.1,
+              child: TweenAnimationBuilder(
+                  duration: Duration(seconds: 1),
+                  tween: Tween<double>(begin: 0.0, end: 1.0),
+                  builder: (context, value, child) {
+                    return Opacity(
+                      opacity: value,
+                      child: Transform.scale(
+                        scale: value,
+                        child: Card(
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Container(
+                            height: height * 0.09,
+                            width: width * 0.8,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black12),
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  height: height * 0.09,
+                                  width: width * 0.25,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("DOB",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                fontSize: width * 0.05,
+                                              )),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      Text(
+                                        "12 Jan 2003",
+                                        style: TextStyle(
+                                            fontSize: width * 0.04,
+                                            color: Colors.blue[600],
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: height * 0.09,
+                                  width: width * 0.005,
+                                  color: Colors.black,
+                                ),
+                                Container(
+                                  height: height * 0.09,
+                                  width: width * 0.25,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Class",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                fontSize: width * 0.05,
+                                              )),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      Text(
+                                        "12th / Fsc",
+                                        style: TextStyle(
+                                            fontSize: width * 0.04,
+                                            color: Colors.blue[600],
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: height * 0.09,
+                                  width: width * 0.005,
+                                  color: Colors.black,
+                                ),
+                                Container(
+                                  height: height * 0.09,
+                                  width: width * 0.25,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Join Date",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                fontSize: width * 0.05,
+                                              )),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      Text(
+                                        "12 Mar 2022",
+                                        style: TextStyle(
+                                            fontSize: width * 0.04,
+                                            color: Colors.blue[600],
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                          Text(
-                            "12 Jan 2003",
-                            style: TextStyle(
-                                fontSize: width * 0.04,
-                                color: Colors.blue[600],
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: height * 0.09,
-                      width: width * 0.005,
-                      color: Colors.black,
-                    ),
-                    Container(
-                      height: height * 0.09,
-                      width: width * 0.25,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Class",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline1!
-                                  .copyWith(
-                                    fontSize: width * 0.05,
-                                  )),
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          Text(
-                            "12th / Fsc",
-                            style: TextStyle(
-                                fontSize: width * 0.04,
-                                color: Colors.blue[600],
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: height * 0.09,
-                      width: width * 0.005,
-                      color: Colors.black,
-                    ),
-                    Container(
-                      height: height * 0.09,
-                      width: width * 0.25,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Join Date",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline1!
-                                  .copyWith(
-                                    fontSize: width * 0.05,
-                                  )),
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          Text(
-                            "12 Mar 2022",
-                            style: TextStyle(
-                                fontSize: width * 0.04,
-                                color: Colors.blue[600],
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
+                    );
+                  })),
           Positioned(
             bottom: height * 0.08,
             top: height * 0.4,

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:school_management_system/model/painter.dart';
-import 'package:school_management_system/view/student/signup/Dashboard/dashboard.dart';
-import 'package:school_management_system/view/student/signup/signup.dart';
+import 'package:school_management_system/view/parents/signup_login/login.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class parentsSignupScreen extends StatefulWidget {
+  const parentsSignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<parentsSignupScreen> createState() => _parentsSignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>
+class _parentsSignupScreenState extends State<parentsSignupScreen>
     with TickerProviderStateMixin {
   final TextEditingController _studentIdController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>(); // Form key for validation
+  final _formKey = GlobalKey<FormState>();
+  bool isChecked = false;
 
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
@@ -58,7 +59,6 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: Container(
         height: height,
@@ -71,8 +71,8 @@ class _LoginScreenState extends State<LoginScreen>
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: height * 0.17),
-                  // Logo with fade animation
+                  SizedBox(height: height * 0.15),
+                  // Logo with scaling animation
                   FadeTransition(
                     opacity: _fadeAnimation,
                     child: Container(
@@ -84,8 +84,37 @@ class _LoginScreenState extends State<LoginScreen>
                       ),
                     ),
                   ),
-                  SizedBox(height: height * 0.06),
-                  // Student ID input field with slide animation
+                  SizedBox(height: height * 0.02),
+                  // Name input field with slide animation
+                  SlideTransition(
+                    position: _slideAnimation,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.06),
+                      child: TextFormField(
+                        controller: _nameController,
+                        decoration: InputDecoration(
+                          labelText: "Name",
+                          hintText: "Enter a name",
+                          labelStyle: TextStyle(fontSize: width * 0.05),
+                          fillColor: Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: width * 0.04, vertical: 15),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.022),
+                  // Student ID input field
                   SlideTransition(
                     position: _slideAnimation,
                     child: Padding(
@@ -93,8 +122,8 @@ class _LoginScreenState extends State<LoginScreen>
                       child: TextFormField(
                         controller: _studentIdController,
                         decoration: InputDecoration(
-                          labelText: "Student ID",
-                          hintText: "Enter a Student ID",
+                          labelText: "Parent ID",
+                          hintText: "Enter a Parent ID",
                           labelStyle: TextStyle(fontSize: width * 0.05),
                           fillColor: Colors.white,
                           filled: true,
@@ -107,18 +136,18 @@ class _LoginScreenState extends State<LoginScreen>
                         keyboardType: TextInputType.number,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter a student ID';
+                            return 'Please enter a Parent ID';
                           }
                           if (value.length != 14) {
-                            return 'Student ID should be 14 digits';
+                            return 'Parent ID should be 14 digits';
                           }
                           return null;
                         },
                       ),
                     ),
                   ),
-                  SizedBox(height: height * 0.02),
-                  // Password input field with slide animation
+                  SizedBox(height: height * 0.022),
+                  // Password input field
                   SlideTransition(
                     position: _slideAnimation,
                     child: Padding(
@@ -150,69 +179,69 @@ class _LoginScreenState extends State<LoginScreen>
                       ),
                     ),
                   ),
-                  SizedBox(height: height * 0.015),
-                  // Forget Password Text
-                  Container(
-                    height: height * 0.04,
-                    width: width * 0.86,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Forget Password ?",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline1!
-                              .copyWith(
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: width * 0.035,
-                                  fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
+                  SizedBox(
+                    height: height * 0.005,
                   ),
-                  SizedBox(height: height * 0.02),
-                  // Animated Login Button with scale effect
+                  Row(
+                    children: [
+                      SizedBox(width: width * 0.05),
+                      Checkbox(
+                        value: isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        },
+                      ),
+                      Text(
+                        "Remember me",
+                        style: Theme.of(context).textTheme.headline1!.copyWith(
+                            fontSize: width * 0.04,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: height * 0.005),
+                  // Sign Up button with scaling effect
                   AnimatedBuilder(
                     animation: _scaleAnimation,
                     builder: (context, child) {
                       return Transform.scale(
                         scale: _scaleAnimation.value,
                         child: Card(
-                          elevation: 8,
+                          elevation: 4,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                              borderRadius: BorderRadius.circular(10)),
                           child: InkWell(
                             onTap: () {
-                              // Validate form before proceeding
                               if (_formKey.currentState!.validate()) {
-                                // If valid, navigate to the Dashboard
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DashboardScreen(),
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => DashboardScreen(),
+                                //   ),
+                                // );
                               }
                             },
                             child: Container(
-                              height: height * 0.07,
+                              height: height * 0.06,
                               width: width * 0.4,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  borderRadius: BorderRadius.circular(10)),
+                                color: Theme.of(context).colorScheme.primary,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               child: Center(
                                 child: Text(
-                                  "LOG IN",
+                                  "SIGN UP",
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline1!
                                       .copyWith(
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: width * 0.06,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600),
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: width * 0.06,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
                                 ),
                               ),
                             ),
@@ -222,7 +251,7 @@ class _LoginScreenState extends State<LoginScreen>
                     },
                   ),
                   SizedBox(height: height * 0.02),
-                  // Sign Up Navigation
+                  // Login link
                   Container(
                     height: height * 0.05,
                     width: width * 0.72,
@@ -231,7 +260,7 @@ class _LoginScreenState extends State<LoginScreen>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't have an account ?",
+                          "Already have an account?",
                           style: Theme.of(context)
                               .textTheme
                               .headline1!
@@ -245,25 +274,25 @@ class _LoginScreenState extends State<LoginScreen>
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SignInScreen(),
+                                builder: (context) => ParentsLoginScreen(),
                               ),
                             );
                           },
                           child: Text(
-                            "Sign Up",
+                            "Login",
                             style: Theme.of(context)
                                 .textTheme
                                 .headline1!
                                 .copyWith(
                                     fontStyle: FontStyle.italic,
-                                    fontSize: width * 0.055,
+                                    fontSize: width * 0.06,
                                     fontWeight: FontWeight.w600),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: height * 0.03),
+                  SizedBox(height: height * 0.015),
                 ],
               ),
             ),

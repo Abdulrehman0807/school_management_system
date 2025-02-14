@@ -199,24 +199,38 @@ class _SettingScreenState extends State<SettingScreen>
                   ),
                 )),
             Positioned(
-              bottom: height * 0.68,
-              left: width * 0.1,
-              right: width * 0.1,
-              child: Container(
-                height: height * 0.08,
-                width: width * 0.8,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black12),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Center(
-                  child: Text("Setting",
-                      style: Theme.of(context).textTheme.headline1!.copyWith(
-                            fontSize: width * 0.05,
-                          )),
-                ),
-              ),
-            )
+                bottom: height * 0.68,
+                left: width * 0.1,
+                right: width * 0.1,
+                child: TweenAnimationBuilder(
+                    duration: Duration(seconds: 1),
+                    tween: Tween<double>(begin: 0.0, end: 1.0),
+                    builder: (context, value, child) {
+                      return Opacity(
+                        opacity: value,
+                        child: Transform.scale(
+                          scale: value,
+                          child: Container(
+                            height: height * 0.08,
+                            width: width * 0.8,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black12),
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Center(
+                              child: Text("Setting",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline1!
+                                      .copyWith(
+                                        fontSize: width * 0.06,
+                                      )),
+                            ),
+                          ),
+                        ),
+                      );
+                    })
+                    ),
           ])),
     );
   }

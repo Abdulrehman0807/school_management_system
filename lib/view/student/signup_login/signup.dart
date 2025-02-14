@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_management_system/model/painter.dart';
-import 'package:school_management_system/view/student/signup/Dashboard/dashboard.dart';
-import 'package:school_management_system/view/student/signup/login.dart';
+import 'package:school_management_system/view/student/dashboard/dashboard.dart';
+import 'package:school_management_system/view/student/signup_login/login.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -226,7 +226,7 @@ class _SignInScreenState extends State<SignInScreen>
                               }
                             },
                             child: Container(
-                              height: height * 0.07,
+                              height: height * 0.06,
                               width: width * 0.4,
                               decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.primary,

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:school_management_system/view/student/signup/getstarted.dart';
+import 'package:school_management_system/view/student/signup_login/getstarted.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

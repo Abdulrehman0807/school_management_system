@@ -7,7 +7,7 @@ class Fee_Bill extends StatefulWidget {
   State<Fee_Bill> createState() => _Fee_BillState();
 }
 
-class _Fee_BillState extends State<Fee_Bill> with TickerProviderStateMixin{
+class _Fee_BillState extends State<Fee_Bill> with TickerProviderStateMixin {
   late AnimationController _controller;
 
   late Animation<double> _fadeAnimation;
@@ -32,6 +32,7 @@ class _Fee_BillState extends State<Fee_Bill> with TickerProviderStateMixin{
     _controller.dispose();
     super.dispose();
   }
+
   var index = 0;
   PageController controller = PageController();
   @override
@@ -52,7 +53,7 @@ class _Fee_BillState extends State<Fee_Bill> with TickerProviderStateMixin{
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     FadeTransition(
-                            opacity: _fadeAnimation,
+                      opacity: _fadeAnimation,
                       child: Container(
                         height: height * 0.15,
                         width: width * 0.7,
@@ -149,7 +150,7 @@ class _Fee_BillState extends State<Fee_Bill> with TickerProviderStateMixin{
                                         child: Column(
                                           children: [
                                             FadeTransition(
-                            opacity: _fadeAnimation,
+                                              opacity: _fadeAnimation,
                                               child: Card(
                                                 elevation: 2,
                                                 shape: RoundedRectangleBorder(
@@ -368,7 +369,7 @@ class _Fee_BillState extends State<Fee_Bill> with TickerProviderStateMixin{
                                               height: height * 0.02,
                                             ),
                                             FadeTransition(
-                            opacity: _fadeAnimation,
+                                              opacity: _fadeAnimation,
                                               child: Card(
                                                 elevation: 1,
                                                 shape: RoundedRectangleBorder(
@@ -1046,24 +1047,37 @@ class _Fee_BillState extends State<Fee_Bill> with TickerProviderStateMixin{
                     ),
                   )),
               Positioned(
-                bottom: height * 0.68,
-                left: width * 0.1,
-                right: width * 0.1,
-                child: Container(
-                  height: height * 0.08,
-                  width: width * 0.8,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black12),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Center(
-                    child: Text("Fees Voucher",
-                        style: Theme.of(context).textTheme.headline1!.copyWith(
-                              fontSize: width * 0.06,
-                            )),
-                  ),
-                ),
-              ),
+                  bottom: height * 0.68,
+                  left: width * 0.1,
+                  right: width * 0.1,
+                  child: TweenAnimationBuilder(
+                      duration: Duration(seconds: 1),
+                      tween: Tween<double>(begin: 0.0, end: 1.0),
+                      builder: (context, value, child) {
+                        return Opacity(
+                          opacity: value,
+                          child: Transform.scale(
+                            scale: value,
+                            child: Container(
+                              height: height * 0.08,
+                              width: width * 0.8,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black12),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Center(
+                                child: Text("Fees Voucher",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .copyWith(
+                                          fontSize: width * 0.06,
+                                        )),
+                              ),
+                            ),
+                          ),
+                        );
+                      })),
             ])));
   }
 }
