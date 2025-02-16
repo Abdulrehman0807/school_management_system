@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 class ModelClass {
   String? name;
   ModelClass({

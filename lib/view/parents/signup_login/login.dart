@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_management_system/model/painter.dart';
+import 'package:school_management_system/view/parents/dashboard/dashboard.dart';
 import 'package:school_management_system/view/parents/signup_login/signup.dart';
 
 class ParentsLoginScreen extends StatefulWidget {
@@ -186,12 +187,13 @@ class _ParentsLoginScreenState extends State<ParentsLoginScreen>
                               // Validate form before proceeding
                               if (_formKey.currentState!.validate()) {
                                 // If valid, navigate to the Dashboard
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => DashboardScreen(),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ParentsDashboardScreen(),
+                                  ),
+                                );
                               }
                             },
                             child: Container(

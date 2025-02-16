@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_management_system/model/painter.dart';
 import 'package:school_management_system/view/admin/login/login.dart';
+import 'package:school_management_system/view/parents/signup_login/login.dart';
 import 'package:school_management_system/view/parents/signup_login/signup.dart';
 import 'package:school_management_system/view/student/signup_login/login.dart';
 import 'package:school_management_system/view/teachers/signup_login/login.dart';
@@ -180,7 +181,7 @@ class _SelectedScreenState extends State<SelectedScreen>
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => parentsSignupScreen(),
+                              builder: (context) => ParentsLoginScreen(),
                             ));
                       },
                       child: AnimatedBuilder(

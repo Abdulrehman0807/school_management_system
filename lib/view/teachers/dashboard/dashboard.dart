@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:school_management_system/view/student/announcments/announcment.dart';
-import 'package:school_management_system/view/student/accdmic_calender/accdmic_calendar.dart';
-import 'package:school_management_system/view/student/attendance/attendance.dart';
-import 'package:school_management_system/view/student/works/dailywork.dart';
-import 'package:school_management_system/view/student/fees/fee_bill.dart';
-import 'package:school_management_system/view/student/notification/notification.dart';
-import 'package:school_management_system/view/student/profile/profile.dart';
-import 'package:school_management_system/view/student/result/result.dart';
-import 'package:school_management_system/view/student/setting/setting.dart';
-import 'package:school_management_system/view/student/timetable/timetable.dart';
-
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+class TeacherDashbordScreen extends StatefulWidget {
+  const TeacherDashbordScreen({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<TeacherDashbordScreen> createState() => _TeacherDashbordScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen>
+class _TeacherDashbordScreenState extends State<TeacherDashbordScreen>
     with TickerProviderStateMixin {
   int currentPageIndex = 0;
   // NavigationDestinationLabelBehavior labelBehavior =
@@ -52,7 +41,6 @@ class _DashboardScreenState extends State<DashboardScreen>
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentPageIndex,
@@ -206,11 +194,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                 )),
                                         trailing: InkWell(
                                           onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Profile()));
+                                            // Navigator.push(
+                                            // context,
+                                            // MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         Profile()));
                                           },
                                           child: Container(
                                             height: height * 0.04,
@@ -249,10 +237,10 @@ class _DashboardScreenState extends State<DashboardScreen>
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Timetable()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => Timetable()));
                                 },
                                 child: FadeTransition(
                                   opacity: _fadeAnimation,
@@ -282,7 +270,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                 .background,
                                           ),
                                           Text(
-                                            "Time Table",
+                                            "Lesson Planing",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline1!
@@ -298,10 +286,10 @@ class _DashboardScreenState extends State<DashboardScreen>
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Attendance()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => Attendance()));
                                 },
                                 child: FadeTransition(
                                   opacity: _fadeAnimation,
@@ -324,14 +312,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                                             MainAxisAlignment.center,
                                         children: [
                                           Icon(
-                                            Icons.calendar_month,
+                                            Icons.class_,
                                             size: width * 0.11,
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .background,
                                           ),
                                           Text(
-                                            "Attendance",
+                                            "Classroom",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline1!
@@ -347,11 +335,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Announcments()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             Announcments()));
                                 },
                                 child: FadeTransition(
                                   opacity: _fadeAnimation,
@@ -406,10 +394,10 @@ class _DashboardScreenState extends State<DashboardScreen>
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Dailywork()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => Dailywork()));
                                 },
                                 child: FadeTransition(
                                   opacity: _fadeAnimation,
@@ -432,14 +420,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                                             MainAxisAlignment.center,
                                         children: [
                                           Icon(
-                                            Icons.article,
+                                            Icons.feedback_rounded,
                                             size: width * 0.11,
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .background,
                                           ),
                                           Text(
-                                            "Daily Work",
+                                            "Feedback",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline1!
@@ -455,11 +443,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Notifications()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             Notifications()));
                                 },
                                 child: FadeTransition(
                                   opacity: _fadeAnimation,
@@ -505,11 +493,69 @@ class _DashboardScreenState extends State<DashboardScreen>
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Resultscreen()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             Resultscreen()));
+                                },
+                                child: FadeTransition(
+                                  opacity: _fadeAnimation,
+                                  child: Card(
+                                    elevation: 2,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Container(
+                                      height: height * 0.15,
+                                      width: width * 0.29,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.black12,
+                                              width: width * 0.002),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.message,
+                                            size: width * 0.11,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .background,
+                                          ),
+                                          Text(
+                                            "Communication",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                  fontSize: width * 0.032,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: height * 0.15,
+                          width: width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => Fee_Bill()));
                                 },
                                 child: FadeTransition(
                                   opacity: _fadeAnimation,
@@ -539,65 +585,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                 .background,
                                           ),
                                           Text(
-                                            "Results",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.032,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: height * 0.15,
-                          width: width,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Fee_Bill()));
-                                },
-                                child: FadeTransition(
-                                  opacity: _fadeAnimation,
-                                  child: Card(
-                                    elevation: 2,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Container(
-                                      height: height * 0.15,
-                                      width: width * 0.29,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.black12,
-                                              width: width * 0.002),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.payment,
-                                            size: width * 0.11,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .background,
-                                          ),
-                                          Text(
-                                            "Fee Voucher",
+                                            "Grading",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline1!
@@ -613,11 +601,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CalendarScreen()));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             CalendarScreen()));
                                 },
                                 child: FadeTransition(
                                   opacity: _fadeAnimation,
@@ -663,11 +651,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                               ),
                               InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SettingScreen()));
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             SettingScreen()));
                                   },
                                   child: FadeTransition(
                                     opacity: _fadeAnimation,

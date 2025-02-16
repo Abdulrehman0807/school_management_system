@@ -116,304 +116,307 @@ class _ResultscreenState extends State<Resultscreen>
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Card(
-                            elevation: 1,
-                            child: Container(
-                              height: height * 0.413,
-                              width: width * 0.9,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.black12, width: 1)),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: height * 0.06,
-                                    width: width,
-                                    color: Colors.yellow,
-                                    child: Center(
-                                      child: Text("Monthly Result",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                fontSize: width * 0.05,
-                                              )),
+                          FadeTransition(
+                            opacity: _fadeAnimation,
+                            child: Card(
+                              elevation: 1,
+                              child: Container(
+                                height: height * 0.413,
+                                width: width * 0.9,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black12, width: 1)),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: height * 0.06,
+                                      width: width,
+                                      color: Colors.yellow,
+                                      child: Center(
+                                        child: Text("Monthly Result",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                  fontSize: width * 0.05,
+                                                )),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: height * 0.05,
-                                    width: width,
-                                    color: Colors.blue,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text("Subject",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.04,
-                                                )),
-                                        Text("Marks",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.04,
-                                                )),
-                                        Text("Total",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.04,
-                                                )),
-                                        Text("Percentage",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.04,
-                                                )),
-                                      ],
+                                    Container(
+                                      height: height * 0.05,
+                                      width: width,
+                                      color: Colors.blue,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("Subject",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.04,
+                                                  )),
+                                          Text("Marks",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.04,
+                                                  )),
+                                          Text("Total",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.04,
+                                                  )),
+                                          Text("Percentage",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.04,
+                                                  )),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: height * 0.05,
-                                    width: width,
-                                    color: Colors.white,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text("Math",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("  80",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("100",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("       80.0 %",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                      ],
+                                    Container(
+                                      height: height * 0.05,
+                                      width: width,
+                                      color: Colors.white,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("Math",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("  80",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("100",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("       80.0 %",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: height * 0.05,
-                                    width: width,
-                                    color: Colors.black12,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text("English",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("60",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("100",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("       60.0 %",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                      ],
+                                    Container(
+                                      height: height * 0.05,
+                                      width: width,
+                                      color: Colors.black12,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("English",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("60",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("100",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("       60.0 %",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: height * 0.05,
-                                    width: width,
-                                    color: Colors.white,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text("Urdu ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("   70",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("100",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("       70.0 %",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                      ],
+                                    Container(
+                                      height: height * 0.05,
+                                      width: width,
+                                      color: Colors.white,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("Urdu ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("   70",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("100",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("       70.0 %",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: height * 0.05,
-                                    width: width,
-                                    color: Colors.black12,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text("Bio ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("     50",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("100",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("       50.0 %",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                      ],
+                                    Container(
+                                      height: height * 0.05,
+                                      width: width,
+                                      color: Colors.black12,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("Bio ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("     50",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("100",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("       50.0 %",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: height * 0.05,
-                                    width: width,
-                                    color: Colors.white,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text("Physic",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("80",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("100",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                        Text("       80.0 %",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.034,
-                                                )),
-                                      ],
+                                    Container(
+                                      height: height * 0.05,
+                                      width: width,
+                                      color: Colors.white,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("Physic",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("80",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("100",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                          Text("       80.0 %",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.034,
+                                                  )),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: height * 0.05,
-                                    width: width,
-                                    color: Colors.black12,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text("Pass   ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.037,
-                                                )),
-                                        Text("340",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.037,
-                                                )),
-                                        Text("500",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.037,
-                                                )),
-                                        Text("       70.0 %",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: width * 0.037,
-                                                )),
-                                      ],
-                                    ),
-                                  )
-                                ],
+                                    Container(
+                                      height: height * 0.05,
+                                      width: width,
+                                      color: Colors.black12,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("Pass   ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.037,
+                                                  )),
+                                          Text("340",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.037,
+                                                  )),
+                                          Text("500",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.037,
+                                                  )),
+                                          Text("       70.0 %",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline1!
+                                                  .copyWith(
+                                                    fontSize: width * 0.037,
+                                                  )),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
